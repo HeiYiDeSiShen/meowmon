@@ -2,8 +2,9 @@ cmake_minimum_required(VERSION 3.10)
 project(RaylibCppTemplate VERSION 1.0)
 
 # 设置C++标准
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
 # 针对 Emscripten (WebAssembly) 的特殊配置
 if(PLATFORM STREQUAL "Web")
@@ -85,10 +86,6 @@ if(EXISTS ${CMAKE_SOURCE_DIR}/third_party/raylib-cpp)
     message(STATUS "Including raylib-cpp from third_party directory")
 endif()
 
-# 添加源文件目录到包含路径
-include_directories(${CMAKE_SOURCE_DIR}/src)
-include_directories(${CMAKE_SOURCE_DIR}/third_party/rapidjson/include)
-
 # 源文件 - 包含所有源文件
 set(SOURCES 
     ${CMAKE_SOURCE_DIR}/src/main.cpp
@@ -110,6 +107,12 @@ set(SOURCES
 
 # 创建主程序
 add_executable(${PROJECT_NAME} ${SOURCES})
+
+# 包含目录
+target_include_directories(${PROJECT_NAME} PRIVATE 
+    ${CMAKE_SOURCE_DIR}/src
+    ${CMAKE_SOURCE_DIR}/third_party/rapidjson/include
+)
 
 # 链接raylib库
 if(TARGET raylib-cpp)

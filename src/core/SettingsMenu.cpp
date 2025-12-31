@@ -238,8 +238,8 @@ void SettingsMenu::drawSettingItem(const Setting& setting, int index, int yPos) 
         float val = *setting.sliderValue;
         float percent = (val - setting.minValue) / (setting.maxValue - setting.minValue);
         DrawRectangle(controlX, yPos + 21, 150, 4, DARKGRAY);
-        DrawRectangle(controlX, yPos + 21, 150 * percent, 4, highlightColor);
-        DrawCircle(controlX + 150 * percent, yPos + 23, 7, WHITE);
+        DrawRectangle(controlX, yPos + 21, (int)(150 * percent), 4, highlightColor);
+        DrawCircle(controlX + (int)(150 * percent), yPos + 23, 7, WHITE);
     } else if (setting.intValue) {
         DrawText(TextFormat("< %d >", *setting.intValue), controlX + 40, yPos + 12, 18, highlightColor);
     } else if (setting.onClick) {

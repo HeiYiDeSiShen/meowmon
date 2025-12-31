@@ -45,7 +45,7 @@ void StartScreen::update(float deltaTime) {
 void StartScreen::draw() {
     // 1. Tailwind 风格深色背景
     DrawRectangleGradientV(0, 0, GetScreenWidth(), GetScreenHeight(), 
-                          (Color){15, 23, 42, 255}, (Color){30, 41, 59, 255}); // Slate-900 to Slate-800
+                          Color{15, 23, 42, 255}, Color{30, 41, 59, 255}); // Slate-900 to Slate-800
     
     // 2. 随鼠标移动的动态光晕 (Glow Effect)
     DrawCircleGradient(mouseGlowPos.x, mouseGlowPos.y, 300, Fade(SKYBLUE, 0.15f), BLANK);
@@ -73,14 +73,14 @@ void StartScreen::draw() {
 
     // 6. 绘制副标题 (Tailwind: text-slate-400)
     UIHelper::DrawTextCentered("Catch 'em all with soul and pixel", 
-                              titleYPos + 90, 22, Fade((Color){148, 163, 184, 255}, alpha));
+                              titleYPos + 90, 22, Fade(Color{148, 163, 184, 255}, alpha));
 
     // 6. Call-to-action 按钮
     drawStartButton();
 
     // 7. 底部提示 (Tailwind: text-slate-500)
     UIHelper::DrawTextCentered("Press [SPACE] or Click to begin journey", 
-                              GetScreenHeight() - 60, 16, Fade((Color){100, 116, 139, 255}, alpha));
+                              GetScreenHeight() - 60, 16, Fade(Color{100, 116, 139, 255}, alpha));
 }
 
 void StartScreen::drawStartButton() {
@@ -107,7 +107,7 @@ void StartScreen::drawStartButton() {
     arrowOffset = fmaxf(0.0f, fminf(10.0f, arrowOffset));
 
     // 绘制按钮文字
-    Color textColor = isHovered ? WHITE : (Color){226, 232, 240, 255}; // Slate-200 to White
+    Color textColor = isHovered ? WHITE : Color{226, 232, 240, 255}; // Slate-200 to White
     UIHelper::DrawTextCentered(btnText, centerY, fontSize, Fade(textColor, entranceAnim));
     
     // 箭头图标位移效果 (->)

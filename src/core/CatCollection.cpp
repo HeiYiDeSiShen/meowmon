@@ -138,12 +138,12 @@ void CatCollection::drawObservationView(const CollectionItem& item, bool useChin
     float centerY = GetScreenHeight() / 2.0f;
 
     // 绘制复古像素风格背景
-    DrawRectangle(centerX - 350, centerY - 250, 700, 500, (Color){20, 20, 25, 255});
-    DrawRectangleLinesEx((Rectangle){centerX - 350, centerY - 250, 700, 500}, 4, (Color){60, 60, 70, 255});
+    DrawRectangle(centerX - 350, centerY - 250, 700, 500, Color{20, 20, 25, 255});
+    DrawRectangleLinesEx((Rectangle){centerX - 350, centerY - 250, 700, 500}, 4, Color{60, 60, 70, 255});
     
     // 绘制像素网格装饰
-    for(int i = 0; i < 700; i += 40) DrawLine(centerX - 350 + i, centerY - 250, centerX - 350 + i, centerY + 250, (Color){30, 30, 40, 255});
-    for(int i = 0; i < 500; i += 40) DrawLine(centerX - 350, centerY - 250 + i, centerX + 350, centerY - 250 + i, (Color){30, 30, 40, 255});
+    for(int i = 0; i < 700; i += 40) DrawLine(centerX - 350 + i, centerY - 250, centerX - 350 + i, centerY + 250, Color{30, 30, 40, 255});
+    for(int i = 0; i < 500; i += 40) DrawLine(centerX - 350, centerY - 250 + i, centerX + 350, centerY - 250 + i, Color{30, 30, 40, 255});
 
     // 设置不同品种的特征颜色和细节
     Color primary = GRAY;
@@ -152,27 +152,27 @@ void CatCollection::drawObservationView(const CollectionItem& item, bool useChin
     Color eye = SKYBLUE;
 
     if (item.type == CatType::PERSIAN) {
-        primary = (Color){245, 240, 230, 255}; // Cream
-        secondary = (Color){220, 210, 190, 255}; // Shadow
-        eye = (Color){240, 230, 140, 255}; // #F0E68C
+        primary = Color{245, 240, 230, 255}; // Cream
+        secondary = Color{220, 210, 190, 255}; // Shadow
+        eye = Color{240, 230, 140, 255}; // #F0E68C
         accent = WHITE; // Highlight
     } else if (item.type == CatType::SIAMESE) {
-        primary = (Color){235, 220, 200, 255}; // 浅米色
-        secondary = (Color){80, 60, 50, 255};  // 深褐色重点色
-        eye = (Color){50, 150, 255, 255}; // 蓝眼睛
+        primary = Color{235, 220, 200, 255}; // 浅米色
+        secondary = Color{80, 60, 50, 255};  // 深褐色重点色
+        eye = Color{50, 150, 255, 255}; // 蓝眼睛
     } else if (item.type == CatType::MAINE_COON) {
-        primary = (Color){100, 95, 90, 255};  // 灰色虎斑
-        secondary = (Color){60, 55, 50, 255};
-        accent = (Color){40, 35, 30, 255};
-        eye = (Color){150, 200, 50, 255}; // 绿眼睛
+        primary = Color{100, 95, 90, 255};  // 灰色虎斑
+        secondary = Color{60, 55, 50, 255};
+        accent = Color{40, 35, 30, 255};
+        eye = Color{150, 200, 50, 255}; // 绿眼睛
     } else if (item.type == CatType::RAGDOLL) {
         primary = WHITE;
-        secondary = (Color){200, 210, 230, 255}; // 淡蓝色调
-        eye = (Color){0, 120, 255, 255}; // 深蓝眼睛
+        secondary = Color{200, 210, 230, 255}; // 淡蓝色调
+        eye = Color{0, 120, 255, 255}; // 深蓝眼睛
     } else if (item.type == CatType::BENGAL) {
-        primary = (Color){210, 160, 100, 255}; // 橘褐色
-        secondary = (Color){120, 80, 40, 255};  // 深色豹纹
-        eye = (Color){100, 180, 50, 255}; // 绿眼睛
+        primary = Color{210, 160, 100, 255}; // 橘褐色
+        secondary = Color{120, 80, 40, 255};  // 深色豹纹
+        eye = Color{100, 180, 50, 255}; // 绿眼睛
     }
 
     // 基础猫咪形状 (16x16 矩阵)
@@ -352,7 +352,7 @@ void CatCollection::drawCard(const CollectionItem& item, float x, float y, bool 
     }
 
     // 绘制边框
-    DrawRectangleRounded(cardRec, 0.1f, 8, selected ? (Color){45, 55, 72, 255} : (Color){31, 41, 55, 255});
+    DrawRectangleRounded(cardRec, 0.1f, 8, selected ? Color{45, 55, 72, 255} : Color{31, 41, 55, 255});
     DrawRectangleRoundedLines(cardRec, 0.1f, 8, selected ? YELLOW : GRAY);
     
     // 获取字体
@@ -362,11 +362,11 @@ void CatCollection::drawCard(const CollectionItem& item, float x, float y, bool 
     if (item.discovered) {
         // 绘制猫咪预览（像素小图标）
         Color primary = GRAY;
-        if (item.type == CatType::PERSIAN) primary = (Color){245, 240, 230, 255};
-        else if (item.type == CatType::SIAMESE) primary = (Color){235, 220, 200, 255};
-        else if (item.type == CatType::MAINE_COON) primary = (Color){100, 95, 90, 255};
+        if (item.type == CatType::PERSIAN) primary = Color{245, 240, 230, 255};
+        else if (item.type == CatType::SIAMESE) primary = Color{235, 220, 200, 255};
+        else if (item.type == CatType::MAINE_COON) primary = Color{100, 95, 90, 255};
         else if (item.type == CatType::RAGDOLL) primary = WHITE;
-        else if (item.type == CatType::BENGAL) primary = (Color){220, 150, 60, 255};
+        else if (item.type == CatType::BENGAL) primary = Color{220, 150, 60, 255};
         
         float pulse = selected ? sin(GetTime() * 5.0f) * 2.0f : 0;
         float px = 4.0f; // 小图标像素大小
@@ -413,10 +413,10 @@ void CatCollection::drawCard(const CollectionItem& item, float x, float y, bool 
         if (hasFont) {
             Vector2 unknownSize = MeasureTextEx(chineseFont, unknown, 16, 1);
             Vector2 unknownPos = { x + width/2 - unknownSize.x/2, y + height - 30 };
-            DrawTextEx(chineseFont, unknown, unknownPos, 16, 1, (Color){75, 85, 99, 255});
+            DrawTextEx(chineseFont, unknown, unknownPos, 16, 1, Color{75, 85, 99, 255});
         } else {
             int unknownWidth = MeasureText(unknown, 16);
-            DrawText(unknown, x + width/2 - unknownWidth/2, y + height - 30, 16, (Color){75, 85, 99, 255});
+            DrawText(unknown, x + width/2 - unknownWidth/2, y + height - 30, 16, Color{75, 85, 99, 255});
         }
     }
 }

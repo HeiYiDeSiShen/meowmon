@@ -237,7 +237,7 @@ void Cat::draw() {
     
     // 颜色配置 (更符合星露谷的柔和调色盘)
     Color bodyColor = color;
-    Color eyeColor = (state == CatState::CATNIPPED) ? PINK : (Color){ 40, 40, 40, 255 };
+    Color eyeColor = (state == CatState::CATNIPPED) ? PINK : Color{ 40, 40, 40, 255 };
     
     switch (type) {
         case CatType::PERSIAN: bodyColor = { 245, 245, 240, 255 }; break;

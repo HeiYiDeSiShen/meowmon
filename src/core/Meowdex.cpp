@@ -127,7 +127,7 @@ void Meowdex::saveProgress() {
     if (!file.is_open()) return;
 
     for (auto const& [type, entry] : entries) {
-        file << (int)type << " " 
+        file << static_cast<int>(type) << " " 
              << entry.caughtCount << " " 
              << (entry.discoveredShiny ? 1 : 0) << " "
              << entry.affection << " "
@@ -136,7 +136,7 @@ void Meowdex::saveProgress() {
         
         file << entry.discoveredPersonalities.size() << " ";
         for (auto p : entry.discoveredPersonalities) {
-            file << (int)p << " ";
+            file << static_cast<int>(p) << " ";
         }
         file << "\n";
     }
