@@ -7,7 +7,7 @@
 class UIHelper {
 public:
     // 绘制居中文本
-    static void DrawTextCentered(const std::string& text, int y, int fontSize, Color color);
+    static void DrawTextCentered(const std::string& text, float y, int fontSize, Color color);
     
     // 绘制按钮
     static bool DrawButton(const std::string& text, Rectangle bounds, Color bgColor, Color textColor);

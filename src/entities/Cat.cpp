@@ -12,10 +12,10 @@ Cat::Cat(const std::string& name, Vector2 position, CatType type)
       animationSpeed(8.0f), width(40.0f), height(30.0f), 
       legLength(10.0f), bodyFatness(1.0f), isFluffy(false),
       sprite({0}), texturePath(""), rd(nullptr), gen(nullptr),
-      aiChangeDirectionTimer(0.0f), aiChangeDirectionInterval(2.0f + (rand() % 3)),
-      type(type), smartMovePattern(0), state(CatState::NORMAL),
-      catnipTimer(0), stateTimer(0), color(WHITE),
-      catnipEffectTimer(0.0f), baseEffectTime(10.0f), catnipPosition({0, 0}),
+      aiChangeDirectionTimer(0.0f), aiChangeDirectionInterval(2.0f + (float)(rand() % 3)),
+    type(type), smartMovePattern(0), state(CatState::NORMAL),
+    catnipTimer(0.0f), stateTimer(0.0f), color(WHITE),
+    catnipEffectTimer(0.0f), baseEffectTime(10.0f), catnipPosition({0, 0}),
       earAngle(0.0f), eyeSize(1.0f), whiskerLength(1.0f), tailStyle(0.0f),
       isShiny(false), personality(CatPersonality::NORMAL), personalityTimer(0.0f) {
     
@@ -221,7 +221,7 @@ void Cat::update(float deltaTime, Vector2 playerPosition, Vector2 catnipPosition
     if (isMoving) {
         walkTimer += deltaTime * (speed / 20.0f);
     } else {
-        walkTimer = 0;
+        walkTimer = 0.0f;
     }
     
     // 检查边界
@@ -247,13 +247,13 @@ void Cat::draw() {
         default: break;
     }
 
-    Vector2 center = { position.x + width/2, position.y + height/2 };
+    Vector2 center = { position.x + width/2.0f, position.y + height/2.0f };
     float dir = facingRight ? 1.0f : -1.0f;
-    float walk = isMoving ? sinf((float)GetTime() * 10.0f) : 0;
+    float walk = isMoving ? sinf((float)GetTime() * 10.0f) : 0.0f;
     float breath = sinf((float)GetTime() * 3.0f) * 0.4f;
 
     // 0. 阴影
-    DrawEllipse((int)center.x, (int)(position.y + height - 2), 12, 4, shadowColor);
+    DrawEllipse((int)center.x, (int)(position.y + height - 2.0f), 12, 4, shadowColor);
 
     // 1. 身体 (横向的长方形，带圆角)
     float bodyW = 12 * p;
@@ -504,10 +504,10 @@ void Cat::changeRandomDirection() {
     // 随机方向
     int direction = gen->operator()() % 8; // 8个方向
     
-    float angle = (direction * 45.0f) * (PI / 180.0f); // 转换为弧度
+    float angle = (float)direction * 45.0f * (PI / 180.0f); // 转换为弧度
     
-    velocity.x = std::cos(angle) * speed;
-    velocity.y = std::sin(angle) * speed;
+    velocity.x = cosf(angle) * speed;
+    velocity.y = sinf(angle) * speed;
     
     isMoving = true;
 }

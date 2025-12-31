@@ -132,7 +132,7 @@ void StatusIndicator::drawIcon(const StatusIcon& icon, float x, float y) {
     // 灵魂像素风格状态图标
     switch (icon.type) {
         case CatStatus::FLEEING: { // ⚡ 闪电 (更动感)
-            float off = sinf(GetTime() * 15.0f) * 2.0f; // 快速抖动
+            float off = sinf((float)GetTime() * 15.0f) * 2.0f; // 快速抖动
             DrawRectangleRec({x + off, y, s+over, s+over}, c);
             DrawRectangleRec({x + s + off, y, s+over, s+over}, c);
             DrawRectangleRec({x + off, y + s, s+over, s+over}, c);
@@ -142,7 +142,7 @@ void StatusIndicator::drawIcon(const StatusIcon& icon, float x, float y) {
             break;
         }
         case CatStatus::CATNIPPED: { // ❤️ 爱心 (更柔和)
-            float wave = sinf(GetTime() * 3.0f) * 0.1f;
+            float wave = sinf((float)GetTime() * 3.0f) * 0.1f;
             float ws = s * (1.0f + wave);
             DrawRectangleRec({x-ws, y-ws, ws+over, ws+over}, ColorAlphaBlend(c, PINK, WHITE));
             DrawRectangleRec({x+ws, y-ws, ws+over, ws+over}, ColorAlphaBlend(c, PINK, WHITE));
@@ -152,7 +152,7 @@ void StatusIndicator::drawIcon(const StatusIcon& icon, float x, float y) {
             break;
         }
         case CatStatus::CAUGHT: { // ✨ 星星 (更闪耀)
-            float rot = GetTime() * 5.0f;
+            float rot = (float)GetTime() * 5.0f;
             float s1 = s * (1.0f + sinf(rot) * 0.2f);
             float s2 = s * (1.0f + cosf(rot) * 0.2f);
             DrawRectangleRec({x, y - s1, s+over, s1*2+over}, c); // 纵向

@@ -41,10 +41,10 @@ void CatCollection::update(float deltaTime) {
     }
 
     if (IsKeyPressed(KEY_RIGHT) || IsKeyPressed(KEY_D) || IsKeyPressed(KEY_DOWN)) {
-        selectedIndex = (selectedIndex + 1) % items.size();
+        selectedIndex = (selectedIndex + 1) % (int)items.size();
     }
     if (IsKeyPressed(KEY_LEFT) || IsKeyPressed(KEY_A) || IsKeyPressed(KEY_UP)) {
-        selectedIndex = (selectedIndex - 1 + items.size()) % items.size();
+        selectedIndex = (selectedIndex - 1 + (int)items.size()) % (int)items.size();
     }
     
     if (IsKeyPressed(KEY_ENTER) || IsKeyPressed(KEY_SPACE) || IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
@@ -88,16 +88,16 @@ void CatCollection::draw(bool useChinese) {
         UIHelper::DrawTextCentered(hint, 100, 20, LIGHTGRAY);
     }
 
-    float startX = (GetScreenWidth() - (items.size() * 140 - 20)) / 2.0f;
-    float cardWidth = 120;
-    float spacing = 20;
+    float startX = ((float)GetScreenWidth() - ((float)items.size() * 140.0f - 20.0f)) / 2.0f;
+    float cardWidth = 120.0f;
+    float spacing = 20.0f;
     
-    for (int i = 0; i < items.size(); i++) {
-        drawCard(items[i], startX + i * (cardWidth + spacing), 220, i == selectedIndex, useChinese);
+    for (int i = 0; i < (int)items.size(); i++) {
+        drawCard(items[i], startX + (float)i * (cardWidth + spacing), 220.0f, i == selectedIndex, useChinese);
     }
 
     // 绘制详情概要
-    if (selectedIndex >= 0 && selectedIndex < items.size()) {
+    if (selectedIndex >= 0 && selectedIndex < (int)items.size()) {
         const auto& item = items[selectedIndex];
         float detailY = 420;
         

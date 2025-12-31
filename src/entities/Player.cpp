@@ -77,11 +77,11 @@ void Player::draw() {
     float dir = facingRight ? 1.0f : -1.0f;
     
     // 呼吸与行走动画
-    float breath = sinf(GetTime() * 2.0f) * 0.5f;
-    float walk = isMoving ? sinf(GetTime() * 12.0f) : 0;
+    float breath = sinf((float)GetTime() * 2.0f) * 0.5f;
+    float walk = isMoving ? sinf((float)GetTime() * 12.0f) : 0.0f;
 
     // 0. 椭圆阴影
-    DrawEllipse((int)center.x, (int)(position.y + height - 2), 10, 4, shadowColor);
+    DrawEllipse((int)center.x, (int)(position.y + height - 2.0f), 10, 4, shadowColor);
 
     // 1. 腿部与脚 (1x2 像素)
     float legY = position.y + height - 6;
@@ -112,7 +112,7 @@ void Player::draw() {
     DrawRectangleRec({ eyeX, headY + 5, 2, 2 }, { 40, 40, 60, 255 });
 
     // 4. UI
-    DrawText(name.c_str(), (int)(center.x - MeasureText(name.c_str(), 10)/2), (int)(position.y - 15), 10, Fade(BLACK, 0.8f));
+    DrawText(name.c_str(), (int)(center.x - (float)MeasureText(name.c_str(), 10) / 2.0f), (int)(position.y - 15.0f), 10, Fade(BLACK, 0.8f));
     
     catnip.draw();
 }

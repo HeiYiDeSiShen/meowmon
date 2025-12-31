@@ -1,10 +1,10 @@
 #include "UIHelper.hpp"
 #include <algorithm>
 
-void UIHelper::DrawTextCentered(const std::string& text, int y, int fontSize, Color color) {
+void UIHelper::DrawTextCentered(const std::string& text, float y, int fontSize, Color color) {
     int textWidth = GetTextWidth(text, fontSize);
     int x = (GetScreenWidth() - textWidth) / 2;
-    DrawText(text.c_str(), x, y, fontSize, color);
+    DrawText(text.c_str(), x, (int)y, fontSize, color);
 }
 
 bool UIHelper::DrawButton(const std::string& text, Rectangle bounds, Color bgColor, Color textColor) {

@@ -36,8 +36,8 @@ void StartScreen::update(float deltaTime) {
         p.position.y += p.velocity.y;
         
         if (p.position.y > 600) {
-            p.position.y = -10;
-            p.position.x = GetRandomValue(0, 800);
+            p.position.y = -10.0f;
+            p.position.x = (float)GetRandomValue(0, 800);
         }
     }
 }
@@ -80,7 +80,7 @@ void StartScreen::draw() {
 
     // 7. 底部提示 (Tailwind: text-slate-500)
     UIHelper::DrawTextCentered("Press [SPACE] or Click to begin journey", 
-                              GetScreenHeight() - 60, 16, Fade(Color{100, 116, 139, 255}, alpha));
+                              (float)GetScreenHeight() - 60.0f, 16, Fade(Color{100, 116, 139, 255}, alpha));
 }
 
 void StartScreen::drawStartButton() {
