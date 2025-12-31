@@ -27,10 +27,9 @@ jobs:
     - name: Prepare Artifacts
       shell: pwsh
       run: |
-        mkdir release
-        copy build/Release/*.exe release/
-        # 递归复制整个 assets 文件夹
-        xcopy /E /I assets release/assets
+        New-Item -ItemType Directory -Path release -Force
+        Copy-Item "build/Release/*.exe" -Destination "release/"
+        Copy-Item -Path "assets" -Destination "release/assets" -Recurse -Force
         
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
