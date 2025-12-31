@@ -2,7 +2,7 @@
 #include <iostream>
 
 StartScreen::StartScreen() 
-    : titleY(-50), subtitleY(GetScreenHeight() + 50), buttonY(GetScreenHeight() + 100), timer(0.0f),
+    : titleY(-50.0f), subtitleY((float)GetScreenHeight() + 50.0f), buttonY((float)GetScreenHeight() + 100.0f), timer(0.0f),
       entranceAnim(0.0f), hoverProgress(0.0f), arrowOffset(0.0f), mouseGlowPos({0, 0}) {
     // 初始化背景粒子
     for (int i = 0; i < 50; i++) {

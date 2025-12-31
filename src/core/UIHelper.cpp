@@ -14,8 +14,8 @@ bool UIHelper::DrawButton(const std::string& text, Rectangle bounds, Color bgCol
     
     // 绘制按钮文本
     int textWidth = GetTextWidth(text, 20);
-    int textX = bounds.x + (bounds.width - textWidth) / 2;
-    int textY = bounds.y + (bounds.height - 20) / 2;
+    int textX = (int)bounds.x + ((int)bounds.width - textWidth) / 2;
+    int textY = (int)bounds.y + ((int)bounds.height - 20) / 2;
     DrawText(text.c_str(), textX, textY, 20, textColor);
     
     // 检查鼠标悬停和点击

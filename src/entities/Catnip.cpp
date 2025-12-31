@@ -76,11 +76,11 @@ void Catnip::checkBoundaries(int mapWidth, int mapHeight) {
     if (!isThrown || !isActive) return;
 
     // 检查是否到达地面或超出边界
-    if (position.y >= mapHeight - 40 || position.x < 0 || position.x > mapWidth) {
+    if (position.y >= (float)mapHeight - 40.0f || position.x < 0.0f || position.x > (float)mapWidth) {
         // 落地，停止飞行，激活效果
         isThrown = false;
-        velocity = {0, 0};
-        if (position.y > mapHeight - 40) position.y = mapHeight - 40;
+        velocity = {0.0f, 0.0f};
+        if (position.y > (float)mapHeight - 40.0f) position.y = (float)mapHeight - 40.0f;
     }
 }
 

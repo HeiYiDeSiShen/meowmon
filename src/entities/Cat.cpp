@@ -249,8 +249,8 @@ void Cat::draw() {
 
     Vector2 center = { position.x + width/2, position.y + height/2 };
     float dir = facingRight ? 1.0f : -1.0f;
-    float walk = isMoving ? sinf(GetTime() * 10.0f) : 0;
-    float breath = sinf(GetTime() * 3.0f) * 0.4f;
+    float walk = isMoving ? sinf((float)GetTime() * 10.0f) : 0;
+    float breath = sinf((float)GetTime() * 3.0f) * 0.4f;
 
     // 0. 阴影
     DrawEllipse((int)center.x, (int)(position.y + height - 2), 12, 4, shadowColor);
@@ -278,7 +278,7 @@ void Cat::draw() {
     // 5. 尾巴 (星露谷风格：Q弹的曲线)
     float tailX = center.x - (bodyW/2) * dir;
     float tailY = bodyY + bodyH/2;
-    float tailWag = sinf(GetTime() * 8.0f) * 5.0f;
+    float tailWag = sinf((float)GetTime() * 8.0f) * 5.0f;
     for(int i=0; i<4; i++) {
         DrawCircle((int)(tailX - i*2*p*dir), (int)(tailY - i*p + tailWag*(i/4.0f)), 3.5f - i*0.5f, bodyColor);
     }
@@ -379,7 +379,9 @@ void Cat::normalAI(float deltaTime, Vector2 playerPos) {
         personalityTimer += deltaTime;
         if (personalityTimer > 3.0f) {
             // 检查玩家是否静止 (这里简化为距离判断)
-            float distToPlayer = std::sqrt(std::pow(position.x - playerPos.x, 2) + std::pow(position.y - playerPos.y, 2));
+            float dx = position.x - playerPos.x;
+            float dy = position.y - playerPos.y;
+            float distToPlayer = std::sqrt(dx * dx + dy * dy);
             
             if (distToPlayer < 200.0f && distToPlayer > 50.0f) {
                 // 向玩家移动
@@ -502,7 +504,7 @@ void Cat::changeRandomDirection() {
     // 随机方向
     int direction = gen->operator()() % 8; // 8个方向
     
-    float angle = (direction * 45.0f) * (M_PI / 180.0f); // 转换为弧度
+    float angle = (direction * 45.0f) * (PI / 180.0f); // 转换为弧度
     
     velocity.x = std::cos(angle) * speed;
     velocity.y = std::sin(angle) * speed;
