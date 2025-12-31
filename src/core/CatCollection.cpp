@@ -139,7 +139,7 @@ void CatCollection::drawObservationView(const CollectionItem& item, bool useChin
 
     // 绘制复古像素风格背景
     DrawRectangle(centerX - 350, centerY - 250, 700, 500, Color{20, 20, 25, 255});
-    DrawRectangleLinesEx((Rectangle){centerX - 350, centerY - 250, 700, 500}, 4, Color{60, 60, 70, 255});
+    DrawRectangleLinesEx(Rectangle{centerX - 350, centerY - 250, 700, 500}, 4, Color{60, 60, 70, 255});
     
     // 绘制像素网格装饰
     for(int i = 0; i < 700; i += 40) DrawLine(centerX - 350 + i, centerY - 250, centerX - 350 + i, centerY + 250, Color{30, 30, 40, 255});
@@ -348,7 +348,7 @@ void CatCollection::drawCard(const CollectionItem& item, float x, float y, bool 
     
     // 绘制阴影
     if (selected) {
-        DrawRectangleRounded((Rectangle){x + 4, y + 4, width, height}, 0.1f, 8, Fade(BLACK, 0.4f));
+        DrawRectangleRounded(Rectangle{x + 4, y + 4, width, height}, 0.1f, 8, Fade(BLACK, 0.4f));
     }
 
     // 绘制边框
